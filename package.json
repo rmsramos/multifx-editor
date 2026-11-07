@@ -34,7 +34,10 @@
       ],
       "icon": "build/icon.png",
       "category": "AudioVideo",
-      "artifactName": "MultiFX-Editor-${version}.${ext}"
+      "artifactName": "MultiFX-Editor-${version}.${ext}",
+      "desktop": {
+        "StartupWMClass": "multifx-editor"
+      }
     }
   },
   "dependencies": {

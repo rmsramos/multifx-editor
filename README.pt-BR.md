@@ -40,6 +40,8 @@ chmod +x MultiFX-Editor-*.AppImage
 ./MultiFX-Editor-*.AppImage
 ```
 
+Para o ícone do app aparecer no lançador e na dock, integre o AppImage ao sistema com uma ferramenta como Gear Lever ou AppImageLauncher (elas criam a entrada de desktop por você).
+
 ## Compilar a partir do código
 
 ```bash

@@ -5,6 +5,8 @@ import { registerIpcHandlers } from './ipc/handlers'
 import { IPC_CHANNELS } from '../shared/ipc-channels'
 import { translate } from '../shared/i18n'
 import type { Locale } from '../shared/i18n'
+// Window icon for Linux docks and taskbars (packaged builds also get the .desktop icon from electron-builder).
+import icon from '../../build/icon.png?asset'
 
 let currentLocale: Locale = 'en'
 
@@ -19,6 +21,7 @@ function createWindow(): void {
     minWidth: 1120,
     minHeight: 700,
     title: 'MultiFX Editor',
+    icon,
     backgroundColor: '#0f1014',
     show: false,
     autoHideMenuBar: true,
