@@ -4,6 +4,8 @@ Editor desktop para Linux do pedal multi-efeitos M-VAVE Tank G. Não oficial.
 
 [Read in English](README.md)
 
+![MultiFX Editor conectado ao pedal, editando o preset 9B](docs/images/screenshot-pt-br.png)
+
 > [!NOTE]
 > Projeto independente, não é afiliado nem endossado pela M-VAVE. "M-VAVE" e "Tank G" são marcas dos seus titulares, citadas apenas para indicar compatibilidade. Os nomes de amplificadores e gabinetes identificam os equipamentos que inspiram os modelos do pedal e pertencem aos seus titulares.
 
