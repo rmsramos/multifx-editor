@@ -1,0 +1,16 @@
+node_modules/
+out/
+dist/
+release/
+.env
+.superpowers/
+.serena/
+private
+captures/
+*.pcap
+*.btsnoop
+*.pdf
+*.fwsc
+*.bin
+*.atkg
+*.hex

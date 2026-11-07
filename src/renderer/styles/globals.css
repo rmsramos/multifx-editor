@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+
+@source "../../renderer/**/*.{tsx,ts,html}";
+
+@theme {
+  --color-tank-bg: #0f1014;
+  --color-tank-card: #17181d;
+  --color-tank-raised: #1d1f26;
+  --color-tank-border: #262933;
+  --color-tank-text: #e8e9ed;
+  --color-tank-muted: #8b8e98;
+
+  --color-tank-ok: #4ade80;
+  --color-tank-warn: #fbbf24;
+  --color-tank-err: #f87171;
+  /* Texto de controle desabilitado: legível (≥3:1 sobre o card) sem competir com o ativo */
+  --color-tank-disabled: #6b6f7b;
+  --color-tank-focus: #fbbf24;
+
+  /* Curva forte de saída para interações de UI */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* Fonte display técnica (wordmark e títulos de módulo) — gera a utility font-display */
+  --font-display: 'Chakra Petch', 'Inter', sans-serif;
+}
+
+body {
+  @apply bg-tank-bg text-tank-text m-0 p-0 overflow-hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  /* Foco visível só para teclado; o mouse não ganha anel. */
+  :focus-visible {
+    outline: 2px solid var(--color-tank-focus);
+    outline-offset: 2px;
+  }
+
+  /* Feedback de pressão em todo botão habilitado — o clique "responde". */
+  button {
+    transition-property: color, background-color, border-color, box-shadow, transform;
+    transition-duration: 120ms;
+    transition-timing-function: var(--ease-out-strong);
+  }
+  button:not(:disabled):active {
+    transform: scale(0.97);
+  }
+}
+
+/* Anel que se expande e some no slot ativo quando a troca veio do pedal. */
+@keyframes pedal-switch-ping {
+  from { box-shadow: 0 0 0 0 rgb(251 191 36 / 0.7); }
+  to { box-shadow: 0 0 0 7px rgb(251 191 36 / 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button:not(:disabled):active {
+    transform: none;
+  }
+}
