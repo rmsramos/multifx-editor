@@ -1,0 +1,65 @@
+{
+  "name": "multifx-editor",
+  "version": "0.2.0",
+  "license": "GPL-3.0-only",
+  "author": "Rômulo Ramos",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rmsramos/multifx-editor.git"
+  },
+  "homepage": "https://github.com/rmsramos/multifx-editor#readme",
+  "description": "MultiFX Editor: Linux desktop editor for the M-VAVE Tank G multi-effects pedal. Unofficial; not affiliated with or endorsed by M-VAVE.",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron-vite preview",
+    "build:linux": "electron-vite build && electron-builder --linux",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "build": {
+    "appId": "com.multifxeditor.app",
+    "productName": "MultiFX Editor",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "build/icon.png",
+      "category": "AudioVideo",
+      "artifactName": "MultiFX-Editor-${version}.${ext}"
+    }
+  },
+  "dependencies": {
+    "@electron-toolkit/utils": "^4.0.0",
+    "@fontsource/chakra-petch": "^5.2.7",
+    "@fontsource/inter": "^5.2.8",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zustand": "^5.0.11"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "electron": "^35.1.2",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^3.1.0",
+    "jsdom": "^28.1.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.8.2",
+    "vitest": "^4.0.18"
+  }
+}
