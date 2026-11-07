@@ -40,6 +40,8 @@ chmod +x MultiFX-Editor-*.AppImage
 ./MultiFX-Editor-*.AppImage
 ```
 
+To show the app icon in your launcher and dock, integrate the AppImage with a tool such as Gear Lever or AppImageLauncher (they create the desktop entry for you).
+
 ## Build from source
 
 ```bash
