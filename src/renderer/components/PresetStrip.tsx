@@ -49,8 +49,8 @@ export default function PresetStrip({
   const others = outsideBankDirty(viewedBank, dirtyIndices, pedalDirtyIndices)
 
   return (
-    <div className="flex items-center gap-4 px-4 py-2 border-b border-tank-border bg-tank-card">
-      <div className="flex items-center gap-1.5">
+    <div className="flex items-center gap-4 px-4 py-2 border-b border-tank-border bg-tank-card whitespace-nowrap">
+      <div className="flex flex-none items-center gap-1.5">
         <span className="text-[10px] font-semibold uppercase tracking-widest text-tank-muted mr-1">
           {t('strip.bank')}
         </span>
@@ -76,7 +76,8 @@ export default function PresetStrip({
         </button>
       </div>
 
-      <div className="flex items-center gap-2">
+      {/* Só os chips encolhem (o código do amp trunca); banco, aviso e botões nunca quebram. */}
+      <div className="flex min-w-0 items-center gap-2">
         {PRESET_SLOTS.map((slot) => {
           const index = presetIndex(viewedBank, slot)
           const preset = presets[index]
@@ -90,21 +91,21 @@ export default function PresetStrip({
               aria-label={`Preset ${viewedBank}${slot}${tag}`}
               aria-current={isActive || undefined}
               onClick={() => onSelect(viewedBank, slot)}
-              className={`relative flex items-center gap-2 rounded-md border px-3 py-1.5 text-xs cursor-pointer transition-colors ${
+              className={`relative flex min-w-0 items-center gap-2 rounded-md border px-3 py-1.5 text-xs cursor-pointer transition-colors ${
                 isActive
                   ? 'border-tank-warn bg-tank-warn/10 text-tank-text'
                   : 'border-tank-border bg-tank-raised text-tank-muted hover:text-tank-text hover:border-tank-muted'
               }`}
             >
-              <span className="font-display text-sm font-bold tabular-nums text-tank-text">
+              <span className="flex-none font-display text-sm font-bold tabular-nums text-tank-text">
                 {viewedBank}{slot}
               </span>
               <span
                 aria-hidden="true"
-                className="w-2.5 h-2.5 rounded-full"
+                className="w-2.5 h-2.5 flex-none rounded-full"
                 style={{ backgroundColor: led, boxShadow: `0 0 6px ${led}88` }}
               />
-              <span className="max-w-[6.5rem] truncate">{ampCode(preset.amp.type)}</span>
+              <span className="min-w-0 max-w-[6.5rem] truncate">{ampCode(preset.amp.type)}</span>
               {kind && <DirtyDot kind={kind} />}
               {isActive && freshPedalSwitch && (
                 <span
@@ -120,10 +121,10 @@ export default function PresetStrip({
       </div>
 
       {viewedBank !== currentBank && (
-        <span className="text-xs text-tank-muted">{t('strip.activeIn', { slot: `${currentBank}${currentSlot}` })}</span>
+        <span className="flex-none text-xs text-tank-muted">{t('strip.activeIn', { slot: `${currentBank}${currentSlot}` })}</span>
       )}
 
-      <div className="ml-auto flex items-center gap-2">
+      <div className="ml-auto flex flex-none items-center gap-2">
         <div className="relative">
           <button
             ref={allBtnRef}

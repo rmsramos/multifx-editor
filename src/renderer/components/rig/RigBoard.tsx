@@ -35,7 +35,7 @@ export default function RigBoard({ preset, selected, onSelect, onToggle }: RigBo
       className="flex items-center justify-center overflow-hidden rounded-xl border border-tank-border px-5 py-7"
       style={{
         // Trilhos de uma pedalboard: frisos horizontais discretos sob os pedais.
-        backgroundColor: '#121318',
+        backgroundColor: 'var(--color-rig-board)',
         backgroundImage: 'repeating-linear-gradient(180deg, transparent 0 26px, rgba(0,0,0,.35) 26px 30px, rgba(255,255,255,.025) 30px 31px)',
       }}
     >
@@ -70,13 +70,13 @@ export default function RigBoard({ preset, selected, onSelect, onToggle }: RigBo
 }
 
 function Cable() {
-  return <span aria-hidden="true" className="h-[4px] w-5 flex-none rounded-full bg-[#2c2f38] shadow-[0_1px_0_rgba(255,255,255,.05)]" />
+  return <span aria-hidden="true" className="h-[4px] w-5 flex-none rounded-full bg-rig-cable shadow-[0_1px_0_rgba(255,255,255,.05)]" />
 }
 
 function Jack({ label }: { label: string }) {
   return (
     <span aria-hidden="true" className="flex flex-none flex-col items-center gap-1.5">
-      <span className="h-3.5 w-3.5 rounded-full border-2 border-[#5d6169] bg-[#0c0d10]" />
+      <span className="h-3.5 w-3.5 rounded-full border-2 border-rig-jack bg-rig-hole" />
       <span className="font-display text-[10px] font-semibold tracking-wider text-tank-muted">{label}</span>
     </span>
   )

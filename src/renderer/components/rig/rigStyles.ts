@@ -6,6 +6,10 @@ export const blockSurface = (active: boolean): string =>
     active ? '' : 'saturate-[.2] brightness-[.5]'
   }`
 
-/** Contorno âmbar do bloco em edição (também é o foco visível por teclado). */
+/** Contorno âmbar do bloco em edição; o foco do teclado tem anel próprio (afastado no selecionado). */
 export const selectedRing = (selected: boolean): string =>
-  `outline-offset-[3px] ${selected ? 'outline-[3px] outline-solid outline-tank-warn' : 'outline-none hover:outline-2 hover:outline-solid hover:outline-white/15'}`
+  `outline-offset-[3px] focus-visible:outline-solid focus-visible:outline-tank-focus ${
+    selected
+      ? 'outline-[3px] outline-solid outline-tank-warn focus-visible:outline-offset-[6px]'
+      : 'outline-0 hover:outline-2 hover:outline-solid hover:outline-white/15 focus-visible:outline-2'
+  }`

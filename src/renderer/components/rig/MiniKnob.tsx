@@ -11,7 +11,7 @@ export default function MiniKnob({ value, min, max, size = 16 }: MiniKnobProps) 
   return (
     <span
       aria-hidden="true"
-      className="relative block rounded-full bg-[radial-gradient(circle_at_35%_30%,#3a3c44,#0c0d10_70%)] shadow-[0_2px_3px_rgba(0,0,0,.6),inset_0_0_0_1px_rgba(255,255,255,.08)]"
+      className="relative block rounded-full bg-[radial-gradient(circle_at_35%_30%,var(--color-rig-knob),var(--color-rig-hole)_70%)] shadow-[0_2px_3px_rgba(0,0,0,.6),inset_0_0_0_1px_rgba(255,255,255,.08)]"
       style={{ width: size, height: size }}
     >
       <span

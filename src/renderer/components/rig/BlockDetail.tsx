@@ -64,7 +64,7 @@ export default function BlockDetail({ block, preset, onUpdatePreset, onUpdateAmp
             <span
               aria-hidden="true"
               className="h-2 w-2 rounded-full"
-              style={toggleable.on ? { backgroundColor: color, boxShadow: `0 0 6px ${color}` } : { backgroundColor: '#4a4d57' }}
+              style={toggleable.on ? { backgroundColor: color, boxShadow: `0 0 6px ${color}` } : { backgroundColor: 'var(--color-rig-off)' }}
             />
             {t(toggleable.on ? 'rig.on' : 'rig.off')}
           </button>

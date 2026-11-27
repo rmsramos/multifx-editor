@@ -40,8 +40,8 @@ export default function PedalBlock({ block, name, selectLabel, footswitchLabel, 
           className="mt-2 h-1.5 w-1.5 rounded-full"
           style={
             block.active
-              ? { backgroundColor: '#ff3b30', boxShadow: '0 0 6px 1px #ff3b30' }
-              : { backgroundColor: '#3a1513' }
+              ? { backgroundColor: 'var(--color-rig-led)', boxShadow: '0 0 6px 1px var(--color-rig-led)' }
+              : { backgroundColor: 'var(--color-rig-led-off)' }
           }
         />
         <span className="mt-1.5 rounded-[3px] bg-black/70 px-1.5 py-[1px] font-display text-[11px] font-bold tracking-wide text-white">

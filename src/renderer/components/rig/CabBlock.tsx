@@ -23,14 +23,14 @@ export default function CabBlock({ block, cones: irCones, selectLabel, selected,
         aria-pressed={selected}
         data-active={block.active}
         onClick={onSelect}
-        className={`${blockSurface(block.active)} ${selectedRing(selected)} absolute inset-0 flex flex-col rounded-[6px] cursor-pointer border-2 bg-[#1b1714] p-[5px]`}
+        className={`${blockSurface(block.active)} ${selectedRing(selected)} absolute inset-0 flex flex-col rounded-[6px] cursor-pointer border-2 bg-rig-chassis p-[5px]`}
         style={{ borderColor: block.color }}
       >
         <span
           aria-hidden="true"
           className="grid flex-1 place-items-center rounded-[3px] p-1.5"
           style={{
-            backgroundColor: '#25211e',
+            backgroundColor: 'var(--color-rig-cab-grille)',
             backgroundImage: 'repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px)',
           }}
         >
@@ -43,14 +43,14 @@ export default function CabBlock({ block, cones: irCones, selectLabel, selected,
                 style={{
                   width: coneSize,
                   height: coneSize,
-                  background: 'radial-gradient(circle, #5b5650 0 16%, #1c1917 19% 58%, #34302c 62% 70%, #1c1917 73%)',
+                  background: 'radial-gradient(circle, var(--color-rig-cone-hub) 0 16%, var(--color-rig-cone) 19% 58%, var(--color-rig-cone-ring) 62% 70%, var(--color-rig-cone) 73%)',
                 }}
               />
             ))}
           </span>
         </span>
         <span
-          className="mx-auto mt-1 rounded-[3px] px-1.5 py-[1px] font-display text-[10px] font-bold tracking-wide text-[#1a0e00]"
+          className="mx-auto mt-1 rounded-[3px] px-1.5 py-[1px] font-display text-[10px] font-bold tracking-wide text-rig-tag-ink"
           style={{ backgroundColor: block.color }}
         >
           {block.typeLabel}
