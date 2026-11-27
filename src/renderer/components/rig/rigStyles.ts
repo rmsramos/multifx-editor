@@ -6,10 +6,15 @@ export const blockSurface = (active: boolean): string =>
     active ? '' : 'saturate-[.2] brightness-[.5]'
   }`
 
-/** Contorno âmbar do bloco em edição; o foco do teclado tem anel próprio (afastado no selecionado). */
+/**
+ * Contorno âmbar do bloco em edição. Vai no CONTÊINER do bloco, fora do filtro de "apagado":
+ * se ficasse no botão, um bloco desligado e selecionado teria o contorno escurecido junto.
+ */
 export const selectedRing = (selected: boolean): string =>
-  `outline-offset-[3px] focus-visible:outline-solid focus-visible:outline-tank-focus ${
-    selected
-      ? 'outline-[3px] outline-solid outline-tank-warn focus-visible:outline-offset-[6px]'
-      : 'outline-0 hover:outline-2 hover:outline-solid hover:outline-white/15 focus-visible:outline-2'
+  selected ? 'outline-[3px] outline-solid outline-tank-warn outline-offset-[3px]' : ''
+
+/** Foco do teclado e hover no corpo do bloco (no selecionado, o anel de foco fica mais afastado). */
+export const focusRing = (selected: boolean): string =>
+  `outline-0 outline-offset-[3px] focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-tank-focus ${
+    selected ? 'focus-visible:outline-offset-[7px]' : 'hover:outline-2 hover:outline-solid hover:outline-white/15'
   }`

@@ -1,5 +1,5 @@
 import type { RigBlock } from '../../rigModel'
-import { blockSurface, selectedRing } from './rigStyles'
+import { blockSurface, focusRing, selectedRing } from './rigStyles'
 
 interface CabBlockProps {
   block: RigBlock
@@ -10,24 +10,29 @@ interface CabBlockProps {
   onSelect: () => void
 }
 
-/** Caixa de alto-falantes: os cones seguem o tamanho do IR (1x12, 2x10, 4x12…). */
+/** Caixa de alto-falantes pintada na cor do bloco; os cones seguem o tamanho do IR (1x12, 2x10, 4x12…). */
 export default function CabBlock({ block, cones: irCones, selectLabel, selected, onSelect }: CabBlockProps) {
   // IR desligado: a caixa continua com cara de gabinete (2 cones genéricos), só que apagada.
   const cones = irCones > 0 ? irCones : 2
   const grid = cones >= 4 ? 'grid-cols-2 grid-rows-2' : cones === 2 ? 'grid-cols-2' : 'grid-cols-1'
   const coneSize = cones >= 4 ? 34 : cones === 2 ? 40 : 58
   return (
-    <div className="relative h-[124px] w-[116px] flex-none">
+    <div className={`relative h-[124px] w-[116px] flex-none rounded-[8px] ${selectedRing(selected)}`}>
       <button
         aria-label={selectLabel}
         aria-pressed={selected}
         data-active={block.active}
         onClick={onSelect}
-        className={`${blockSurface(block.active)} ${selectedRing(selected)} absolute inset-0 flex flex-col rounded-[6px] cursor-pointer border-2 border-rig-cab-edge bg-rig-chassis p-[5px]`}
+        className={`${blockSurface(block.active)} ${focusRing(selected)} absolute inset-0 flex flex-col rounded-[8px] cursor-pointer p-[6px]`}
+        style={{
+          // Estrutura pintada na cor do bloco, como os pedais: ligado = aceso, Off = apagado.
+          backgroundColor: block.color,
+          backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 38%, rgba(0,0,0,.18))',
+        }}
       >
         <span
           aria-hidden="true"
-          className="grid flex-1 place-items-center rounded-[3px] p-1.5"
+          className="grid flex-1 place-items-center rounded-[4px] p-1.5 shadow-[inset_0_1px_3px_rgba(0,0,0,.6)]"
           style={{
             backgroundColor: 'var(--color-rig-cab-grille)',
             backgroundImage: 'repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px)',
@@ -48,10 +53,7 @@ export default function CabBlock({ block, cones: irCones, selectLabel, selected,
             ))}
           </span>
         </span>
-        <span
-          className="mx-auto mt-1 rounded-[3px] px-1.5 py-[1px] font-display text-[10px] font-bold tracking-wide text-rig-tag-ink"
-          style={{ backgroundColor: block.color }}
-        >
+        <span className="mx-auto mt-1.5 rounded-[3px] bg-black/70 px-1.5 py-[1px] font-display text-[10px] font-bold tracking-wide text-white">
           {block.typeLabel}
         </span>
       </button>

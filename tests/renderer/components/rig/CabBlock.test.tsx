@@ -21,6 +21,13 @@ describe('CabBlock', () => {
     expect(body.className).not.toMatch(/(^|\s)outline-tank-warn(\s|$)/)
   })
 
+  it('estrutura pintada na cor do bloco, como os pedais (ligado não pode parecer apagado)', () => {
+    const { getByRole } = render(<CabBlock block={block(true)} cones={4} selectLabel="Edit Cab" selected={false} onSelect={vi.fn()} />)
+    const body = getByRole('button', { name: 'Edit Cab' })
+    expect(body.style.backgroundColor).toBe('rgb(251, 146, 60)') // #fb923c
+    expect(body).toHaveAttribute('data-active', 'true')
+  })
+
   it('com o IR desligado continua parecendo um gabinete (2 cones apagados)', () => {
     const { getAllByTestId } = render(<CabBlock block={block(false)} cones={0} selectLabel="Edit Cab" selected={false} onSelect={vi.fn()} />)
     expect(getAllByTestId('cab-cone')).toHaveLength(2)

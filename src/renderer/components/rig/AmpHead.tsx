@@ -1,6 +1,6 @@
 import type { RigBlock } from '../../rigModel'
 import MiniKnob from './MiniKnob'
-import { blockSurface, selectedRing } from './rigStyles'
+import { blockSurface, focusRing, selectedRing } from './rigStyles'
 
 interface AmpHeadProps {
   block: RigBlock
@@ -16,13 +16,13 @@ interface AmpHeadProps {
 /** Cabeçote: gabinete preto, painel na cor do amp com os 5 knobs e a grade com o modelo. */
 export default function AmpHead({ block, modelName, selectLabel, switchLabel, selected, onSelect, onToggle }: AmpHeadProps) {
   return (
-    <div className="relative h-[124px] w-[184px] flex-none">
+    <div className={`relative h-[124px] w-[184px] flex-none rounded-[8px] ${selectedRing(selected)}`}>
       <button
         aria-label={selectLabel}
         aria-pressed={selected}
         data-active={block.active}
         onClick={onSelect}
-        className={`${blockSurface(block.active)} ${selectedRing(selected)} absolute inset-0 flex flex-col overflow-hidden rounded-[8px] cursor-pointer bg-rig-chassis p-[5px] text-left`}
+        className={`${blockSurface(block.active)} ${focusRing(selected)} absolute inset-0 flex flex-col overflow-hidden rounded-[8px] cursor-pointer bg-rig-chassis p-[5px] text-left`}
       >
         <span
           className="flex h-[34px] items-center gap-2 rounded-[4px] pl-2.5 pr-12"

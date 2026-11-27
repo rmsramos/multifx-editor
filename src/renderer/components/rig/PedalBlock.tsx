@@ -1,7 +1,7 @@
 import type { RigBlock } from '../../rigModel'
 import MiniKnob from './MiniKnob'
 import Footswitch from './Footswitch'
-import { blockSurface, selectedRing } from './rigStyles'
+import { blockSurface, focusRing, selectedRing } from './rigStyles'
 
 interface PedalBlockProps {
   block: RigBlock
@@ -17,13 +17,13 @@ interface PedalBlockProps {
 export default function PedalBlock({ block, name, selectLabel, footswitchLabel, selected, onSelect, onToggle }: PedalBlockProps) {
   const plate = block.typeLabel ?? name.toUpperCase()
   return (
-    <div className="relative h-[124px] w-[92px] flex-none">
+    <div className={`relative h-[124px] w-[92px] flex-none rounded-[10px] ${selectedRing(selected)}`}>
       <button
         aria-label={selectLabel}
         aria-pressed={selected}
         data-active={block.active}
         onClick={onSelect}
-        className={`${blockSurface(block.active)} ${selectedRing(selected)} absolute inset-0 rounded-[10px] cursor-pointer flex flex-col items-center pt-3`}
+        className={`${blockSurface(block.active)} ${focusRing(selected)} absolute inset-0 rounded-[10px] cursor-pointer flex flex-col items-center pt-3`}
         style={{
           backgroundColor: block.color,
           backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 38%, rgba(0,0,0,.18))',

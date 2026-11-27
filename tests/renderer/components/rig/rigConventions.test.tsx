@@ -23,6 +23,16 @@ describe('convenções do modo Rig', () => {
     expect(offenders).toEqual([])
   })
 
+  it('o contorno de seleção não é apagado junto com um bloco desligado', () => {
+    const preset = { ...usePresetStore.getState().presets[0], irCab: 0 }
+    render(<RigBoard preset={preset} selected="cab" onSelect={vi.fn()} onToggle={vi.fn()} />)
+    const body = screen.getByRole('button', { name: 'Edit Cab' })
+    expect(body).toHaveAttribute('data-active', 'false')
+    const ringHolder = body.closest('.outline-tank-warn') as HTMLElement
+    expect(ringHolder).not.toBeNull()
+    expect(ringHolder.className).not.toMatch(/brightness-/)
+  })
+
   it('blocos não selecionados mantêm o anel de foco do teclado', () => {
     render(<RigBoard preset={usePresetStore.getState().presets[0]} selected="amp" onSelect={vi.fn()} onToggle={vi.fn()} />)
     for (const name of ['Edit Gate', 'Edit Mod', 'Edit Cab', 'Edit Amp']) {
