@@ -14,3 +14,6 @@ captures/
 *.bin
 *.atkg
 *.hex
+
+# Instruções locais do Claude Code (não publicar)
+CLAUDE.md
