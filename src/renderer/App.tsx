@@ -6,7 +6,7 @@ import { usePresetStore } from './stores/preset-store'
 import { useTranslation } from './i18n'
 import Header from './components/Header'
 import EditorToolbar from './components/EditorToolbar'
-import PresetGrid from './components/PresetGrid'
+import PresetStrip from './components/PresetStrip'
 import AmpModule from './components/AmpModule'
 import ReverbModule from './components/ReverbModule'
 import DelayModule from './components/DelayModule'
@@ -17,9 +17,6 @@ import SignalChain, { type ToggleableModule } from './components/SignalChain'
 import EditorLock from './components/EditorLock'
 import StatusBar from './components/StatusBar'
 import Toast from './components/Toast'
-
-const sidebarBtn =
-  'px-2 py-1.5 text-xs rounded bg-tank-raised border border-tank-border text-tank-muted hover:text-tank-text hover:border-tank-muted cursor-pointer'
 
 function App(): React.JSX.Element {
   const { connectionStatus } = useDevice()
@@ -45,6 +42,7 @@ function App(): React.JSX.Element {
     toggleTuner,
     tunerPending,
   } = usePreset()
+  const presets = usePresetStore((s) => s.presets)
   const dirtyIndices = usePresetStore((s) => s.dirtyIndices)
   const pedalDirtyIndices = usePresetStore((s) => s.pedalDirtyIndices)
   const lastPedalSwitchAt = usePresetStore((s) => s.lastPedalSwitchAt)
@@ -71,32 +69,20 @@ function App(): React.JSX.Element {
   return (
     <div className="flex flex-col h-screen bg-tank-bg text-tank-text">
       <Header connectionStatus={connectionStatus} />
+      {/* Navegação de presets: fora da área travada (segue ativa com bypass/afinador). */}
+      <PresetStrip
+        presets={presets}
+        currentBank={currentBank}
+        currentSlot={currentSlot}
+        dirtyIndices={dirtyIndices}
+        pedalDirtyIndices={pedalDirtyIndices}
+        pedalSwitchAt={lastPedalSwitchAt}
+        onSelect={selectPreset}
+        onImport={importPreset}
+        onExport={exportPreset}
+      />
 
       <div className="flex flex-1 min-h-0">
-        {/* Sidebar de presets */}
-        <aside className="w-[210px] flex-none flex flex-col border-r border-tank-border bg-tank-card p-3 overflow-y-auto">
-          <h2 className="text-[10px] font-semibold uppercase tracking-widest text-tank-muted mb-2">
-            {t('nav.presets')}
-          </h2>
-          <PresetGrid
-            currentBank={currentBank}
-            currentSlot={currentSlot}
-            dirtyIndices={dirtyIndices}
-            pedalDirtyIndices={pedalDirtyIndices}
-            pedalSwitchAt={lastPedalSwitchAt}
-            onSelect={selectPreset}
-          />
-          {/* Importar/Exportar agem sobre o preset selecionado — ficam junto do grid. */}
-          <div className="mt-auto pt-4 grid grid-cols-2 gap-2">
-            <button onClick={importPreset} title={t('header.importTitle')} className={sidebarBtn}>
-              {t('header.import')}
-            </button>
-            <button onClick={exportPreset} title={t('header.exportTitle')} className={sidebarBtn}>
-              {t('header.export')}
-            </button>
-          </div>
-        </aside>
-
         {/* Editor */}
         <main className="flex-1 min-w-0 flex flex-col">
           <EditorToolbar
