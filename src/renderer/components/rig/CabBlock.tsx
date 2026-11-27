@@ -23,8 +23,7 @@ export default function CabBlock({ block, cones: irCones, selectLabel, selected,
         aria-pressed={selected}
         data-active={block.active}
         onClick={onSelect}
-        className={`${blockSurface(block.active)} ${selectedRing(selected)} absolute inset-0 flex flex-col rounded-[6px] cursor-pointer border-2 bg-rig-chassis p-[5px]`}
-        style={{ borderColor: block.color }}
+        className={`${blockSurface(block.active)} ${selectedRing(selected)} absolute inset-0 flex flex-col rounded-[6px] cursor-pointer border-2 border-rig-cab-edge bg-rig-chassis p-[5px]`}
       >
         <span
           aria-hidden="true"

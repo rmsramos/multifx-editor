@@ -26,6 +26,8 @@
   --color-rig-chassis: #1b1714;
   --color-rig-grille: #2a2420;
   --color-rig-cab-grille: #25211e;
+  /* Borda neutra do gabinete: a cor do bloco fica só na etiqueta, senão parece selecionado */
+  --color-rig-cab-edge: #3a332e;
   --color-rig-cone: #1c1917;
   --color-rig-cone-hub: #5b5650;
   --color-rig-cone-ring: #34302c;
