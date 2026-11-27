@@ -1,6 +1,7 @@
 import type { ConnectionStatus } from '@shared/types/device'
 import ConnectionBadge from './ConnectionBadge'
 import LanguageSelector from './LanguageSelector'
+import ViewModeSelector from './ViewModeSelector'
 import { BRAND_COLOR } from '../theme'
 import { useTranslation } from '../i18n'
 
@@ -29,6 +30,7 @@ export default function Header({ connectionStatus }: HeaderProps) {
       </div>
       <div className="flex items-center gap-2">
         <ConnectionBadge status={connectionStatus} />
+        <ViewModeSelector />
         <LanguageSelector />
       </div>
     </div>
