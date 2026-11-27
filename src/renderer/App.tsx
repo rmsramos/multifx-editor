@@ -7,13 +7,10 @@ import { useTranslation } from './i18n'
 import Header from './components/Header'
 import EditorToolbar from './components/EditorToolbar'
 import PresetStrip from './components/PresetStrip'
-import AmpModule from './components/AmpModule'
-import ReverbModule from './components/ReverbModule'
-import DelayModule from './components/DelayModule'
-import ModModule from './components/ModModule'
-import NoiseGateModule from './components/NoiseGateModule'
-import IrCabModule from './components/IrCabModule'
-import SignalChain, { type ToggleableModule } from './components/SignalChain'
+import { type ToggleableModule } from './components/SignalChain'
+import PanelView from './components/PanelView'
+import RigView from './components/rig/RigView'
+import { useSettingsStore } from './stores/settings-store'
 import EditorLock from './components/EditorLock'
 import StatusBar from './components/StatusBar'
 import Toast from './components/Toast'
@@ -49,6 +46,14 @@ function App(): React.JSX.Element {
   const deviceInfo = usePresetStore((s) => s.deviceInfo)
   const syncState = usePresetStore((s) => s.syncState)
   const { t, locale } = useTranslation()
+  const viewMode = useSettingsStore((s) => s.viewMode)
+  const updaters = {
+    onUpdatePreset: updatePreset,
+    onUpdateAmp: updateAmp,
+    onUpdateMod: updateMod,
+    onUpdateDelay: updateDelay,
+    onUpdateReverb: updateReverb,
+  }
 
   const handleChainToggle = (module: ToggleableModule) => {
     const updaters = { amp: updateAmp, mod: updateMod, delay: updateDelay, reverb: updateReverb }
@@ -112,27 +117,11 @@ function App(): React.JSX.Element {
               }`}
               inert={locked}
             >
-              <SignalChain preset={currentPreset} onToggle={handleChainToggle} />
-
-              {/* Linha 1: GATE → AMP (núcleo do som). Gate com a largura do conteúdo. */}
-              <div className="flex items-stretch gap-4">
-                <NoiseGateModule
-                  value={currentPreset.noiseGate}
-                  onChange={(noiseGate) => updatePreset({ noiseGate })}
-                  className="flex-none"
-                />
-                <AmpModule settings={currentPreset.amp} onChange={updateAmp} className="flex-1" />
-              </div>
-
-              {/* Linha 2: MOD → DELAY → REVERB → IR CAB. 4 colunas a partir de 60rem de área
-                  (cada card ~230 px, o mínimo para os 3 segmentos de tipo sem cortar); abaixo
-                  disso quebra em 2+2 — na janela mínima (1120 px) já é 2+2. */}
-              <div className="grid grid-cols-2 @min-[60rem]:grid-cols-4 gap-4">
-                <ModModule settings={currentPreset.mod} onChange={updateMod} />
-                <DelayModule settings={currentPreset.delay} onChange={updateDelay} />
-                <ReverbModule settings={currentPreset.reverb} onChange={updateReverb} />
-                <IrCabModule value={currentPreset.irCab} onChange={(value) => updatePreset({ irCab: value })} />
-              </div>
+              {viewMode === 'rig' ? (
+                <RigView preset={currentPreset} {...updaters} />
+              ) : (
+                <PanelView preset={currentPreset} onChainToggle={handleChainToggle} {...updaters} />
+              )}
 
               <div className="space-y-1 text-[11px] leading-snug text-tank-muted">
                 <p>{t('models.disclaimer')}</p>
