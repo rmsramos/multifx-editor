@@ -4,7 +4,9 @@ Linux desktop editor for the M-VAVE Tank G multi-effects pedal. Unofficial.
 
 [Leia em português](README.pt-BR.md)
 
-![MultiFX Editor connected to the pedal, editing preset 9B](docs/images/screenshot-en.png)
+![MultiFX Editor in Panel view, editing preset 9A](docs/images/screenshot-en.png)
+
+![MultiFX Editor in Rig view: the signal chain drawn as a pedalboard](docs/images/screenshot-rig-en.png)
 
 > [!NOTE]
 > Independent project, not affiliated with or endorsed by M-VAVE. "M-VAVE" and "Tank G" are trademarks of their owners, cited only to indicate compatibility. Amp and cabinet names identify the gear the pedal models are inspired by and belong to their respective owners.
@@ -16,6 +18,7 @@ Linux desktop editor for the M-VAVE Tank G multi-effects pedal. Unofficial.
 
 - 36 presets in 9 banks (A/B/C/D slots), loaded from and saved to the pedal
 - Editing of the AMP, MOD, Delay, Reverb, IR Cab and Noise Gate modules
+- Two views: Panel (one card per module) and Rig (the signal chain drawn as a pedalboard)
 - LED color picker
 - Preset import and export as JSON
 - Tuner and bypass controlled from the app
